@@ -70,7 +70,7 @@ awk '{if ($6< 1e-30)print $1 }' ECI.blastp.detail.out > ECI.blastp.detail.filter
 wc -l ECI.blastp.detail.filtered.out
 grep -o -E "^[A-Z]\.[a-z]+" ECI.blastp.detail.filtered.out  | sort | uniq -c
 ```
-The first command filtered the BLAST search from the previous two commands by an E-value of 1e-30. The second command showed the total number of BLAST hits (matches) post-filtering, and the third command told me about the number of enoyl-CoA isomerase paralogs in each of the following species: <ins>C. carcharias, C. mydas, D. rerio, E. caballus, F. catus, G. aculeatus, G. gallus, H. sapiens, S. salar, S. townsendi,</ins> and <ins>X. laevis</ins>.
+The first command filtered the BLAST search from the previous two commands by an E-value of 1e-30. The second command showed the total number of BLAST hits (matches) post-filtering, and the third command told me about the number of enoyl-CoA isomerase paralogs in each of the following species: _C. carcharias, C. mydas, D. rerio, E. caballus, F. catus, G. aculeatus, G. gallus, H. sapiens, S. salar, S. townsendi,_ and _X. laevis_.
 ## Lab 4 Analysis
 ## Lab 5 Analysis
 ## Lab 6 Analysis
