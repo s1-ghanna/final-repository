@@ -53,7 +53,7 @@ Used to navigate to my Lab 3 repository.
 mkdir ~/lab03-$MYGIT/ECI
 cd ~/lab03-$MYGIT/ECI
 ```
-Used to create and navigate to the directory ECI (short for <ins>e</ins>noyl-<ins>C</ins>oA <ins>i</ins>somerase, the gene I studied).
+Used to create and navigate to the directory ECI (short for <ins>e</ins>noyl-<ins>C</ins>oA <ins>i</ins>somerase, the gene I studied) for this lab.
 ```
 ncbi-acc-download -F fasta -m protein "NP_996667.2"
 blastp -db ../allprotein.fas -query NP_996667.2.fa -outfmt 0 -max_hsps 1 -out ECI.blastp.typical.out
@@ -72,6 +72,37 @@ grep -o -E "^[A-Z]\.[a-z]+" ECI.blastp.detail.filtered.out  | sort | uniq -c
 ```
 The first command filtered the BLAST search from the previous two commands by an E-value of 1e-30. The second command showed the total number of BLAST hits (matches) post-filtering, and the third command told me about the number of enoyl-CoA isomerase paralogs in each of the following species: _C. carcharias, C. mydas, D. rerio, E. caballus, F. catus, G. aculeatus, G. gallus, H. sapiens, S. salar, S. townsendi,_ and _X. laevis_.
 ## Lab 4 Analysis
+```
+mkdir ~/lab04-$MYGIT/ECI
+cd ~/lab04-$MYGIT/ECI
+```
+Used to create and navigate to the directory ECI for this lab.
+```
+seqkit grep --pattern-file ~/lab03-$MYGIT/ECI/ECI.blastp.detail.filtered.out ~/lab03-$MYGIT/allprotein.fas | seqkit grep -v -p "carpio" > ~/lab04-$MYGIT/ECI/ECI.homologs.fas
+muscle -align ~/lab04-$MYGIT/ECI/ECI.homologs.fas -output ~/lab04-$MYGIT/ECI/ECI.homologs.al.fas
+alv -kli  ~/lab04-$MYGIT/ECI/ECI.homologs.al.fas | less -RS
+alv -kli --majority ~/lab04-$MYGIT/ECI/ECI.homologs.al.fas | less -RS
+```
+The first command retrieved desired sequences from ECI.blastp.detail.filtered.out for alignment. The "muscle" command did a multiple sequence alignment of said sequences. Both "alv -kli" commands were used to view the results of the Muscle alignment in slightly different formats (the fourth command displayed only the color of those columns where the most common amino acid was found in 50 percent of sequences).
+```
+Rscript --vanilla ~/lab04-$MYGIT/plotMSA.R  ~/lab04-$MYGIT/ECI/ECI.homologs.al.fas
+alv -kil -w 100 ~/lab04-$MYGIT/ECI/ECI.homologs.al.fas | aha > ~/lab04-$MYGIT/ECI/ECI.homologs.al.html
+a2ps -r --columns=1 ~/lab04-$MYGIT/ECI/ECI.homologs.al.html -o ~/lab04-$MYGIT/ECI/ECI.homologs.al.ps
+ps2pdf ~/lab04-$MYGIT/ECI/ECI.homologs.al.ps ~/lab04-$MYGIT/ECI/ECI.homologs.al.pdf
+```
+The above commands were supposed to create a PDF of my alignment, but they were broken.
+```
+alignbuddy  -al  ~/lab04-$MYGIT/ECI/ECI.homologs.al.fas
+alignbuddy -trm all  ~/lab04-$MYGIT/ECI/ECI.homologs.al.fas | alignbuddy  -al
+alignbuddy -dinv 'ambig' ~/lab04-$MYGIT/ECI/ECI.homologs.al.fas | alignbuddy  -al
+```
+The first command gave the alignment length, the second command gave the alignment length after removing columns with gaps, and the third column gave the alignment length after removing completely conserved positions.
+```
+t_coffee -other_pg seq_reformat -in ~/lab04-$MYGIT/ECI/ECI.homologs.al.fas -output sim
+alignbuddy -pi ~/lab04-$MYGIT/ECI/ECI.homologs.al.fas | awk ' (NR>2)  { for (i=2;i<=NF  ;i++){ sum+=$i;num++} }
+     END{ print(100*sum/num) } '
+```
+Both of the above commands calculated average percent identity of the sequence alignment (t_coffee excluded gapped positions while alignbuddy included them).
 ## Lab 5 Analysis
 ## Lab 6 Analysis
 ## Lab 7 Analysis
