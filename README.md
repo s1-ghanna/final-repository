@@ -7,7 +7,7 @@ cd lab02-myusername
 MYGIT="s1-ghanna"
 echo "export MYGIT=$MYGIT" >> ~/.bashrc
 ```
-The command "MYGIT="s1-ghanna" set "s1-ghanna" as the variable whenever I typed in $MYGIT, and the command "echo "export MYGIT=$MYGIT" >> ~/.bashrc" saved this variable for future use.
+After navigating to my Lab 2 repository, the command "MYGIT="s1-ghanna" set "s1-ghanna" as the variable whenever I typed in $MYGIT, and the command "echo "export MYGIT=$MYGIT" >> ~/.bashrc" saved this variable for future use.
 ```
 cd ~/lab02-$MYGIT
 ncbi-acc-download -F genbank "NW_003143794.1"
@@ -44,6 +44,16 @@ less LOC100375093.X1.protein.fa
 ```
 The first of the above 3 commands was used to join the exons in the CDS together, the second command translated that result into a protein sequence, and the third command showed the results of the second command.
 ## Lab 3 Analysis
+```
+git clone https://github.com/Bio312/lab03-$MYGIT
+cd lab03-$MYGIT
+```
+Used to navigate to my Lab 3 repository.
+```
+mkdir ~/lab03-$MYGIT/ECI
+cd ~/lab03-$MYGIT/ECI
+```
+Used to create and navigate to the directory ECI (short for <ins>e</ins>noyl-<ins>C</ins>oA <ins>i</ins>somerase, the gene I studied).
 ## Lab 4 Analysis
 ## Lab 5 Analysis
 ## Lab 6 Analysis
