@@ -104,6 +104,33 @@ alignbuddy -pi ~/lab04-$MYGIT/ECI/ECI.homologs.al.fas | awk ' (NR>2)  { for (i=2
 ```
 Both of the above commands calculated average percent identity of the sequence alignment (t_coffee excluded gapped positions while alignbuddy included them).
 ## Lab 5 Analysis
+```
+mkdir ~/lab05-$MYGIT/ECI
+cd ~/lab05-$MYGIT/ECI
+```
+Used to create and navigate to the directory ECI for this lab.
+```
+sed 's/ /_/g'  ~/lab04-$MYGIT/ECI/ECI.homologs.al.fas | seqkit grep -v -r -p "dupelabel" >  ~/lab05-$MYGIT/ECI/ECI.homologsf.al.fas
+iqtree -s ~/lab05-$MYGIT/ECI/ECI.homologsf.al.fas -bb 1000 -nt 2
+```
+The first command removed sequences with duplicate labelled tags from ECI.homologs.al.fas and put that copy from Lab 4's ECI directory to Lab 5's ECI directory. The second command calculated the maximum likelihood tree estimate.
+```
+nw_display ~/lab05-$MYGIT/ECI/ECI.homologsf.al.fas.treefile
+Rscript --vanilla ~/lab05-$MYGIT/plotUnrooted.R  ~/lab05-$MYGIT/ECI/ECI.homologsf.al.fas.treefile ~/lab05-$MYGIT/ECI/ECI.homologsf.al.fas.treefile.pdf 0.4 15
+```
+The "nw_display" command displayed an ASCII graphics version of the maximum likelihood tree. The R script showed this tree in an easier-to-read graphical display.
+```
+gotree reroot midpoint -i ~/lab05-$MYGIT/ECI/ECI.homologsf.al.fas.treefile -o ~/lab05-$MYGIT/ECI/ECI.homologsf.al.mid.treefile
+nw_order -c n ~/lab05-$MYGIT/ECI/ECI.homologsf.al.mid.treefile  | nw_display -
+nw_order -c n ~/lab05-$MYGIT/ECI/ECI.homologsf.al.mid.treefile | nw_display -w 1000 -b 'opacity:0' -s  >  ~/lab05-$MYGIT/ECI/ECI.homologsf.al.mid.treefile.svg -
+convert  ~/lab05-$MYGIT/ECI/ECI.homologsf.al.mid.treefile.svg  ~/lab05-$MYGIT/ECI/ECI.homologsf.al.mid.treefile.pdf
+```
+The first of the above 4 commands rerooted the tree to be midpoint-rooted. The second command displayed an ASCII graphics version of this newly rooted tree, the third command created a graphical display in a .svg file, and the fourth command turned the .svg file into a PDF.
+```
+nw_order -c n ~/lab05-$MYGIT/ECI/ECI.homologsf.al.mid.treefile | nw_topology - | nw_display -s  -w 1000 > ~/lab05-$MYGIT/ECI/ECI.homologsf.al.midCl.treefile.svg -
+convert ~/lab05-$MYGIT/ECI/ECI.homologsf.al.midCl.treefile.svg ~/lab05-$MYGIT/ECI/ECI.homologsf.al.midCl.treefile.pdf
+```
+These two commands served the same purpose as the two commands right before them, except all branches were made to have equal lengths.
 ## Lab 6 Analysis
 ## Lab 7 Analysis
 ## Lab 8 Analysis
