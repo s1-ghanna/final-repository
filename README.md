@@ -54,6 +54,23 @@ mkdir ~/lab03-$MYGIT/ECI
 cd ~/lab03-$MYGIT/ECI
 ```
 Used to create and navigate to the directory ECI (short for <ins>e</ins>noyl-<ins>C</ins>oA <ins>i</ins>somerase, the gene I studied).
+```
+ncbi-acc-download -F fasta -m protein "NP_996667.2"
+blastp -db ../allprotein.fas -query NP_996667.2.fa -outfmt 0 -max_hsps 1 -out ECI.blastp.typical.out
+less ECI.blastp.typical.out
+```
+The first command downloaded the enoyl-CoA isomerase protein from Homo sapiens as the query sequence. The second above command did a BLAST search on this query sequences, and the third command displayed the results.
+```
+blastp -db ../allprotein.fas -query NP_996667.2.fa  -outfmt "6 sseqid pident length mismatch gapopen evalue bitscore pident stitle"  -max_hsps 1 -out ECI.blastp.detail.out
+less -S ECI.blastp.detail.out
+```
+These two commands were very similar to the second and third commands from the previous trio, except this next "blastp" command created a more detailed and easily processed version of ECI.blastp.typical.out.
+```
+awk '{if ($6< 1e-30)print $1 }' ECI.blastp.detail.out > ECI.blastp.detail.filtered.out
+wc -l ECI.blastp.detail.filtered.out
+grep -o -E "^[A-Z]\.[a-z]+" ECI.blastp.detail.filtered.out  | sort | uniq -c
+```
+The first command filtered the BLAST search from the previous two commands by an E-value of 1e-30. The second command showed the total number of BLAST hits (matches) post-filtering, and the third command told me about the number of enoyl-CoA isomerase paralogs in each of the following species: <ins>C. carcharias, C. mydas, D. rerio, E. caballus, F. catus, G. aculeatus, G. gallus, H. sapiens, S. salar, S. townsendi,</ins> and <ins>X. laevis</ins>.
 ## Lab 4 Analysis
 ## Lab 5 Analysis
 ## Lab 6 Analysis
