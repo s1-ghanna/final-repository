@@ -130,3 +130,4 @@ cut -f 6 ~/lab08-$MYGIT/ECI/ECI.rps-blast.out | sort | uniq -c
 awk '{a=$4-$3;print $1,'\t',a;}' ~/lab08-$MYGIT/ECI/ECI.rps-blast.out |  sort  -k2nr
 cut -f 1,5 -d $'\t' ~/lab08-$MYGIT/ECI/ECI.rps-blast.out
 ```
+The first command told me which proteins had multiple annotations. The second command told me which Pfam domain annotation was most commonly found across all of the displayed enoyl-CoA isomerase homologs. The third command told me which Pfam domain annotation was the least commonly found. The fourth command told me which protein had a domain annotation with the best E-value.
