@@ -1,0 +1,22 @@
+{
+  "version": "1.2",
+  "dbname": "allprotein.fas",
+  "dbtype": "Protein",
+  "db-version": 5,
+  "description": "allprotein.fas",
+  "number-of-letters": 159224691,
+  "number-of-sequences": 276117,
+  "last-updated": "2024-09-12T12:25:00",
+  "number-of-volumes": 1,
+  "bytes-total": 198806879,
+  "bytes-to-cache": 161709849,
+  "files": [
+    "allprotein.fas.pdb",
+    "allprotein.fas.phr",
+    "allprotein.fas.pin",
+    "allprotein.fas.pot",
+    "allprotein.fas.psq",
+    "allprotein.fas.ptf",
+    "allprotein.fas.pto"
+  ]
+}
