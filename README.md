@@ -106,3 +106,27 @@ convert  -density 150 ~/lab06-$MYGIT/ECI/ECI.homologsf.pruned.treefile.rec.svg ~
 ```
 The python command created a .xml version of the Notung-reconciliated file from the previous command's output. This .xml file was input into the ThirdKind command to create a graphic in .svg format. The third command turned this .svg file into a PDF that was easily viewable.
 ## Lab 8 Analysis
+```
+mkdir ~/lab08-$MYGIT/ECI
+cd ~/lab08-$MYGIT/ECI
+```
+Used to create and navigate to the directory ECI for this lab.
+```
+sed 's/*//' ~/lab04-$MYGIT/ECI/ECI.homologs.fas > ~/lab08-$MYGIT/ECI/ECI.homologs.fas
+rpsblast -query ~/lab08-$MYGIT/ECI/ECI.homologs.fas -db ~/data/Pfam/Pfam -out ~/lab08-$MYGIT/ECI/ECI.rps-blast.out  -outfmt "6 qseqid qlen qstart qend evalue stitle" -evalue .0000000001
+```
+```
+cp ~/lab05-$MYGIT/ECI/ECI.homologsf.al.mid.treefile ~/lab08-$MYGIT/ECI
+Rscript  --vanilla ~/lab08-$MYGIT/plotTreeAndDomains2.r ~/lab08-$MYGIT/ECI/ECI.homologsf.al.mid.treefile ~/lab08-$MYGIT/ECI/ECI.rps-blast.out ~/lab08-$MYGIT/ECI/ECI.homologs.fas ~/lab08-$MYGIT/ECI/ECI.tree.rps.pdf
+```
+The first command copied the midpoint-rooted gene tree of my enoyl-CoA isomerase homologs from the ECI directory in lab 5 to the ECI directory in lab 8. The Rscript created the PDF of the domain tree with the predicted Pfam domains next to each enoyl-CoA isomerase homolog.
+```
+mlr --inidx --ifs "\t" --opprint  cat ~/lab08-$MYGIT/ECI/ECI.rps-blast.out | tail -n +2 | less -S
+```
+The above command told me which predicted Pfam domains were present in each enoyl-CoA isomerase homolog.
+```
+cut -f 1 ~/lab08-$MYGIT/ECI/ECI.rps-blast.out | sort | uniq -c
+cut -f 6 ~/lab08-$MYGIT/ECI/ECI.rps-blast.out | sort | uniq -c
+awk '{a=$4-$3;print $1,'\t',a;}' ~/lab08-$MYGIT/ECI/ECI.rps-blast.out |  sort  -k2nr
+cut -f 1,5 -d $'\t' ~/lab08-$MYGIT/ECI/ECI.rps-blast.out
+```
