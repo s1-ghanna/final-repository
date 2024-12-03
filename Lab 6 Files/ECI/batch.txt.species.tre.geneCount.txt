@@ -1,0 +1,2 @@
+GT name	E.caballus	Laurasiatheria	F.catus	Boreoeutheria	H.sapiens	Amniota	G.gallus	Archelosauria	C.mydas	Sauria	S.townsendi	Tetrapoda	X.laevis	Euteleostomi	G.aculeatus	Euteleosteomorpha	S.salar	Clupeocephala	D.rerio	Gnathostomata	C.carcharias
+ECI.homologsf.pruned.treefile	3.0	5.0	3.0	6.0	7.0	10.0	3.0	5.0	3.0	8.0	4.0	12.0	6.0	15.0	3.0	5.0	6.0	5.0	2.0	16.0	3.0

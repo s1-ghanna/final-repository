@@ -1,0 +1,2 @@
+GT name	Candidates	Feasible	Saved	Score
+ECI.homologsf.pruned.treefile	1	1	1	120.0
