@@ -88,5 +88,21 @@ convert ~/lab05-$MYGIT/ECI/ECI.homologsf.al.midCl.treefile.svg ~/lab05-$MYGIT/EC
 ```
 These two commands served the same purpose as the two commands right before them, except all branches were made to have equal lengths.
 ## Lab 6 Analysis
-## Lab 7 Analysis
+```
+mkdir ~/lab06-$MYGIT/ECI
+cd ~/lab06-$MYGIT/ECI
+```
+Used to create and navigate to the directory ECI for this lab.
+```
+cp ~/lab05-$MYGIT/ECI/ECI.homologsf.al.mid.treefile ~/lab06-$MYGIT/ECI/ECI.homologsf.al.mid.treefile
+gotree prune -i ~/lab06-$MYGIT/ECI/ECI.homologsf.al.mid.treefile -o ~/lab06-$MYGIT/ECI/ECI.homologsf.pruned.treefile
+java -jar ~/tools/Notung-3.0_24-beta/Notung-3.0_24-beta.jar -s ~/lab05-$MYGIT/species.tre -g ~/lab06-$MYGIT/ECI/ECI.homologsf.pruned.treefile --reconcile --speciestag prefix --savepng --events --outputdir ~/lab06-$MYGIT/ECI/
+```
+The first command copied the midpoint-rooted gene tree of my enoyl-CoA isomerase homologs from the ECI directory in lab 5 to the ECI directory in lab 6. The second "gotree" command was used to "prune" the tree for leaving out certain species, but this created no change from the original midpoint-rooted .treefile (no species were dropped). The pruned.treefile was used as the input for the third command to perform the gene-tree-species-tree reconciliation.
+```
+python2.7 ~/tools/recPhyloXML/python/NOTUNGtoRecPhyloXML.py -g ~/lab06-$MYGIT/ECI/ECI.homologsf.pruned.treefile.rec.ntg --include.species
+thirdkind -Iie -D 40 -f ~/lab06-$MYGIT/ECI/ECI.homologsf.pruned.treefile.rec.ntg.xml -o  ~/lab06-$MYGIT/ECI/ECI.homologsf.pruned.treefile.rec.svg
+convert  -density 150 ~/lab06-$MYGIT/ECI/ECI.homologsf.pruned.treefile.rec.svg ~/lab06-$MYGIT/ECI/ECI.homologsf.pruned.treefile.rec.pdf
+```
+The python command created a .xml version of the Notung-reconciliated file from the previous command's output. This .xml file was input into the ThirdKind command to create a graphic in .svg format. The third command turned this .svg file into a PDF that was easily viewable.
 ## Lab 8 Analysis
