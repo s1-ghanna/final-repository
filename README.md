@@ -6,6 +6,12 @@ cd lab03-$MYGIT
 ```
 Used to navigate to my Lab 3 repository.
 ```
+gunzip proteomes/*.gz
+cat  proteomes/*.faa > allprotein.fas
+makeblastdb -in allprotein.fas -dbtype prot
+```
+Used to unzip the proteomes and make the necessary BLAST database.
+```
 mkdir ~/lab03-$MYGIT/ECI
 cd ~/lab03-$MYGIT/ECI
 ```
@@ -27,7 +33,22 @@ wc -l ECI.blastp.detail.filtered.out
 grep -o -E "^[A-Z]\.[a-z]+" ECI.blastp.detail.filtered.out  | sort | uniq -c
 ```
 The first command filtered the BLAST search from the previous two commands by an E-value of 1e-30. The second command showed the total number of BLAST hits (matches) post-filtering, and the third command told me about the number of enoyl-CoA isomerase paralogs in each of the following species: _C. carcharias, C. mydas, D. rerio, E. caballus, F. catus, G. aculeatus, G. gallus, H. sapiens, S. salar, S. townsendi,_ and _X. laevis_.
+```
+cd ~/lab03-$MYGIT
+history > ~/lab03-$MYGIT/lab3.commandhistory.txt
+find . -size +5M | sed 's|^\./||g' | cat >> .gitignore; awk '!NF || !seen[$0]++' .gitignore
+git add .
+git commit -a -m "Adding all new data files I generated in AWS to the repository."
+git pull --rebase=false --no-edit
+git push
+```
+Used to commit changes to the remote GitHub repository.
 ## Lab 4 Analysis
+```
+git clone https://github.com/Bio312/lab04-$MYGIT
+cd lab04-$MYGIT
+```
+Used to navigate to my Lab 4 repository.
 ```
 mkdir ~/lab04-$MYGIT/ECI
 cd ~/lab04-$MYGIT/ECI
@@ -59,7 +80,22 @@ alignbuddy -pi ~/lab04-$MYGIT/ECI/ECI.homologs.al.fas | awk ' (NR>2)  { for (i=2
      END{ print(100*sum/num) } '
 ```
 Both of the above commands calculated average percent identity of the sequence alignment (t_coffee excluded gapped positions while alignbuddy included them).
+```
+cd ~/lab04-$MYGIT
+history > ~/lab04-$MYGIT/lab3.commandhistory.txt
+find . -size +5M | sed 's|^\./||g' | cat >> .gitignore; awk '!NF || !seen[$0]++' .gitignore
+git add .
+git commit -a -m "Adding all new data files I generated in AWS to the repository."
+git pull --rebase=false --no-edit
+git push
+```
+Used to commit changes to the remote GitHub repository.
 ## Lab 5 Analysis
+```
+git clone https://github.com/Bio312/lab05-$MYGIT
+cd lab05-$MYGIT
+```
+Used to navigate to my Lab 5 repository.
 ```
 mkdir ~/lab05-$MYGIT/ECI
 cd ~/lab05-$MYGIT/ECI
@@ -87,7 +123,22 @@ nw_order -c n ~/lab05-$MYGIT/ECI/ECI.homologsf.al.mid.treefile | nw_topology - |
 convert ~/lab05-$MYGIT/ECI/ECI.homologsf.al.midCl.treefile.svg ~/lab05-$MYGIT/ECI/ECI.homologsf.al.midCl.treefile.pdf
 ```
 These two commands served the same purpose as the two commands right before them, except all branches were made to have equal lengths.
+```
+cd ~/lab05-$MYGIT
+history > ~/lab05-$MYGIT/lab3.commandhistory.txt
+find . -size +5M | sed 's|^\./||g' | cat >> .gitignore; awk '!NF || !seen[$0]++' .gitignore
+git add .
+git commit -a -m "Adding all new data files I generated in AWS to the repository."
+git pull --rebase=false --no-edit
+git push
+```
+Used to commit changes to the remote GitHub repository.
 ## Lab 6 Analysis
+```
+git clone https://github.com/Bio312/lab06-$MYGIT
+cd lab06-$MYGIT
+```
+Used to navigate to my Lab 6 repository.
 ```
 mkdir ~/lab06-$MYGIT/ECI
 cd ~/lab06-$MYGIT/ECI
@@ -105,7 +156,22 @@ thirdkind -Iie -D 40 -f ~/lab06-$MYGIT/ECI/ECI.homologsf.pruned.treefile.rec.ntg
 convert  -density 150 ~/lab06-$MYGIT/ECI/ECI.homologsf.pruned.treefile.rec.svg ~/lab06-$MYGIT/ECI/ECI.homologsf.pruned.treefile.rec.pdf
 ```
 The python command created a .xml version of the Notung-reconciliated file from the previous command's output. This .xml file was input into the ThirdKind command to create a graphic in .svg format. The third command turned this .svg file into a PDF that was easily viewable.
+```
+cd ~/lab06-$MYGIT
+history > ~/lab06-$MYGIT/lab3.commandhistory.txt
+find . -size +5M | sed 's|^\./||g' | cat >> .gitignore; awk '!NF || !seen[$0]++' .gitignore
+git add .
+git commit -a -m "Adding all new data files I generated in AWS to the repository."
+git pull --rebase=false --no-edit
+git push
+```
+Used to commit changes to the remote GitHub repository.
 ## Lab 8 Analysis
+```
+git clone https://github.com/Bio312/lab08-$MYGIT
+cd lab08-$MYGIT
+```
+Used to navigate to my Lab 8 repository.
 ```
 mkdir ~/lab08-$MYGIT/ECI
 cd ~/lab08-$MYGIT/ECI
@@ -131,3 +197,13 @@ awk '{a=$4-$3;print $1,'\t',a;}' ~/lab08-$MYGIT/ECI/ECI.rps-blast.out |  sort  -
 cut -f 1,5 -d $'\t' ~/lab08-$MYGIT/ECI/ECI.rps-blast.out
 ```
 The first command told me which proteins had multiple annotations. The second command told me which Pfam domain annotation was most commonly found across all of the displayed enoyl-CoA isomerase homologs. The third command told me which Pfam domain annotation was the least commonly found. The fourth command told me which protein had a domain annotation with the best E-value.
+```
+cd ~/lab08-$MYGIT
+history > ~/lab08-$MYGIT/lab3.commandhistory.txt
+find . -size +5M | sed 's|^\./||g' | cat >> .gitignore; awk '!NF || !seen[$0]++' .gitignore
+git add .
+git commit -a -m "Adding all new data files I generated in AWS to the repository."
+git pull --rebase=false --no-edit
+git push
+```
+Used to commit changes to the remote GitHub repository.
